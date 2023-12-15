@@ -1,0 +1,24 @@
+server:
+  port:9000
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.109.49.39:3306/TITAN01
+    username: root
+    password: WJY20011219
+  application:
+    name: bussiness
+  cloud:
+    nacos:
+      server-addr: 47.109.49.39:8848
+      discovery:
+        namespace: 7e6b15d9-08f4-4369-8817-0a45e587ebf8
+      config:
+        name: bussiness
+        cluster-name: 成都
+  mvc:
+    dispatch-options-request: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
