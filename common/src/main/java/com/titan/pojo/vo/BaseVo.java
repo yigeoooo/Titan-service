@@ -16,11 +16,11 @@ public class BaseVo {
      */
     private String id;
     /**
-     * 创建者
+     * 密碼
      */
     private String password;
     /**
-     * 创建时间
+     * 舊密碼
      */
     private String oldPassword;
     /**

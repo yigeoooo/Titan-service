@@ -1,5 +1,6 @@
 package com.titan.config;
 
+import com.titan.intercepter.CheckIntercepter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -16,6 +17,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    @Autowired
+    private CheckIntercepter checkIntercepter;
+
     //同源策略解决跨域
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -25,17 +29,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true) // 是否允许证书（cookies）
                 .maxAge(8000); // 预检请求的缓存时间（秒）
     }
-
+    //攔截器註冊，定義攔截路徑
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(interceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/api/login")
-//                .excludePathPatterns("/swagger/**")
-//                .excludePathPatterns("/v2/api-docs")
-//                .excludePathPatterns("/swagger-ui.html")
-//                .excludePathPatterns("/swagger-resources/**")
-//                .excludePathPatterns("/doc.html")
-//                .excludePathPatterns("/webjars/**");
+        registry.addInterceptor(checkIntercepter)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/api/root/login");
     }
 }
