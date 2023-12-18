@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.titan.pojo.entity.DoctorInfoEntity;
 import com.titan.pojo.vo.DoctorInfoVo;
 
+import java.util.List;
+
 /**
  * 醫生信息接口
  * @author yigeoooo
@@ -18,5 +20,5 @@ public interface DoctorInfoIService extends IService<DoctorInfoEntity> {
 
     String sexRatio();
 
-
+    List<String> doctors(String department);
 }

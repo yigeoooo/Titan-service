@@ -54,8 +54,7 @@ public class WardInfoEntity implements Serializable {
     /**
     * 病房數量
     */
-
-    private String bedCount;
+    private int bedCount;
     /**
     * 排序標識符
     */

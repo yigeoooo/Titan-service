@@ -1,6 +1,7 @@
 package com.titan.utils;
 
 import com.alibaba.nacos.shaded.com.google.gson.Gson;
+import com.titan.xss.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
@@ -26,45 +27,43 @@ public class RedisUtils {
     private SetOperations<String, Object> setOperations;
     @Autowired
     private ZSetOperations<String, Object> zSetOperations;
-    /**  默認過期時長，單位：秒 */
-    public final static long DEFAULT_EXPIRE = 60 * 60 * 24;
-    /**  不設置過期時長 */
-    public final static long NOT_EXPIRE = -1;
+
+
     private final static Gson gson = new Gson();
 
     public void set(String key, Object value, long expire){
         valueOperations.set(key, toJson(value));
-        if(expire != NOT_EXPIRE){
+        if(expire != RedisConstant.NOT_EXPIRE){
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
         }
     }
 
     public void set(String key, Object value){
-        set(key, value, DEFAULT_EXPIRE);
+        set(key, value, RedisConstant.DEFAULT_EXPIRE);
     }
 
     public <T> T get(String key, Class<T> clazz, long expire) {
         String value = valueOperations.get(key);
-        if(expire != NOT_EXPIRE){
+        if(expire != RedisConstant.NOT_EXPIRE){
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
         }
         return value == null ? null : fromJson(value, clazz);
     }
 
     public <T> T get(String key, Class<T> clazz) {
-        return get(key, clazz, NOT_EXPIRE);
+        return get(key, clazz, RedisConstant.NOT_EXPIRE);
     }
 
     public String get(String key, long expire) {
         String value = valueOperations.get(key);
-        if(expire != NOT_EXPIRE){
+        if(expire != RedisConstant.NOT_EXPIRE){
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
         }
         return value;
     }
 
     public String get(String key) {
-        return get(key, NOT_EXPIRE);
+        return get(key, RedisConstant.NOT_EXPIRE);
     }
 
     public void delete(String key) {

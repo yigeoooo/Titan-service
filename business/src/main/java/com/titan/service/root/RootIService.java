@@ -2,6 +2,9 @@ package com.titan.service.root;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.titan.pojo.entity.RootEntity;
+import com.titan.pojo.entity.RootInfoEntity;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author yigeoooo
@@ -9,4 +12,5 @@ import com.titan.pojo.entity.RootEntity;
  * @since date 2023/12/16
  */
 public interface RootIService extends IService<RootEntity> {
+
 }

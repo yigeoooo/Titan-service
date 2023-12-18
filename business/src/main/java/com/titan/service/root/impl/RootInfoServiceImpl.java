@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.titan.mapper.root.RootInfoMapper;
 import com.titan.pojo.entity.RootInfoEntity;
 import com.titan.service.root.RootInfoIService;
+import com.titan.utils.RedisUtils;
 import com.titan.utils.Result;
+import com.titan.xss.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +23,25 @@ public class RootInfoServiceImpl extends ServiceImpl<RootInfoMapper, RootInfoEnt
     @Autowired
     private RootInfoMapper rootInfoMapper;
 
+    @Autowired
+    private RedisUtils redisUtils;
+
 
     @Override
-    public Result info(HttpServletRequest request) {
-        String id = request.getAttribute("id").toString();
-        QueryWrapper<RootInfoEntity> query = new QueryWrapper<>();
-        query.eq("admin_id", id);
-        RootInfoEntity rootInfo = rootInfoMapper.selectOne(query);
-        if (rootInfo == null){
-            log.error("查詢錯誤或未完善用戶信息");
-            return Result.build(500, "500", "查詢錯誤或未完善用戶信息", false);
+    public RootInfoEntity info(HttpServletRequest request) {
+        Object obj = request.getAttribute("id");
+        //獲得管理員key
+        String key = RedisConstant.ROOT_ID + ":" + (String)obj;
+        RootInfoEntity root = redisUtils.get(key, RootInfoEntity.class);
+        //若redis中存在數據直接返回
+        if (root != null) {
+            return root;
         }
-        return Result.build(rootInfo);
+        //redis中不存在則查詢數據庫並寫入數據到redis
+        QueryWrapper<RootInfoEntity> query = new QueryWrapper<>();
+        query.eq("root_id", (String)obj);
+        RootInfoEntity rootInfoEntity = rootInfoMapper.selectOne(query);
+        redisUtils.set(key, rootInfoEntity, RedisConstant.NORMAL_EXPIRE);
+        return rootInfoEntity;
     }
 }

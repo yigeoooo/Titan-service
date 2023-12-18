@@ -36,6 +36,7 @@ public class WardInfoServiceImpl extends ServiceImpl<WardInfoMapper, WardInfoEnt
         query.eq("doctor_name", doctor);
         DoctorInfoEntity doctorInfoDo = doctorInfoMapper.selectOne(query);
         String phoneNumber = doctorInfoDo.getPhoneNumber();
+        wardInfoDo.setBedCount(0);
         wardInfoDo.setPhoneNumber(phoneNumber);
         //插入病房信息
         wardInfoMapper.insert(wardInfoDo);

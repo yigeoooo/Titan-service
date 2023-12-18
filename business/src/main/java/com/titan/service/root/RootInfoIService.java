@@ -16,5 +16,5 @@ public interface RootInfoIService extends IService<RootInfoEntity> {
      * 獲取admin用戶詳細信息
      * @return Result
      */
-    Result info(HttpServletRequest request);
+    RootInfoEntity info(HttpServletRequest request);
 }

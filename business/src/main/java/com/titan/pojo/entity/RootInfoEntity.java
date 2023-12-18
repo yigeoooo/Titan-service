@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import java.time.LocalDate;
 
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -46,11 +46,11 @@ public class RootInfoEntity {
     /**
      * 插入时间
      */
-    private LocalDateTime insertTime;
+    private LocalDate insertTime;
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private LocalDate updateTime;
     /**
      * 逻辑删除标识符
      */

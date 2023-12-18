@@ -14,6 +14,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -67,6 +69,20 @@ public class DoctorInfoServiceImpl extends ServiceImpl<DoctorInfoMapper, DoctorI
 
         String str = manCount.toString() + "/" + womanCount.toString();
         return str;
+    }
+
+    @Override
+    public List<String> doctors(String department) {
+        //构建条件
+        QueryWrapper<DoctorInfoEntity> query = new QueryWrapper<>();
+        query.eq("department", department);
+        List<DoctorInfoEntity> doctors = doctorInfoMapper.selectList(query);
+        //封装医生名字集合
+        List<String> list = new ArrayList<>();
+        doctors.forEach(item->{
+            list.add(item.getDoctorName());
+        });
+        return list;
     }
 
 }

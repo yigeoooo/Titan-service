@@ -2,6 +2,7 @@ package com.titan.pojo.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -69,7 +70,7 @@ public class NurseInfoEntity implements Serializable {
     /**
     * 邏輯刪除標識符
     */
-
+    @TableLogic
     private Integer isDeleted;
 
 

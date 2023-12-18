@@ -41,13 +41,12 @@ public class RootInfoController {
      * @return Result
      */
     @GetMapping("/info")
-    public Result getAdminInfo(HttpServletRequest request) {
+    public Result info(HttpServletRequest request) {
         return Result.build(rootInfoIService.info(request));
     }
 
     /**
      * 修改或新增admin信息
-     *
      * @param rootInfoEntity
      * @return Result
      */
@@ -58,7 +57,7 @@ public class RootInfoController {
         LocalDateTime dateTime = LocalDateTime.now();
         rootInfoEntity.setUpdateTime(dateTime);
         rootInfoEntity.setRootId(id);
-        query.eq("admin_id", id);
+        query.eq("root_id", id);
         boolean bo = rootInfoIService.saveOrUpdate(rootInfoEntity, query);
         if (bo) {
             return Result.build(true);

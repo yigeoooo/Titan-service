@@ -99,4 +99,14 @@ public class DoctorInfoController {
     public Result sexRatio(){
         return Result.build(doctorInfoIService.sexRatio());
     }
+
+    /**
+     * 查询所属部门医生信息
+     * @param department
+     * @return ResultInfo
+     */
+    @GetMapping("/list")
+    public Result getDoctors(String department) {
+        return Result.build(doctorInfoIService.doctors(department));
+    }
 }
