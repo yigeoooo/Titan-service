@@ -5,6 +5,7 @@ import com.titan.pojo.entity.RootEntity;
 import com.titan.pojo.vo.BaseVo;
 import com.titan.service.root.RootIService;
 import com.titan.utils.JwtUtils;
+import com.titan.utils.RedisUtils;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
