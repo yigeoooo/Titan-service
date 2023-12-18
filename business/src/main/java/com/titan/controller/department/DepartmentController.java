@@ -5,6 +5,7 @@ import com.titan.exception.BusinessException;
 import com.titan.pojo.entity.DepartmentEntity;
 import com.titan.pojo.vo.DepartmentVo;
 import com.titan.service.department.DepartmentIService;
+import com.titan.utils.RedisUtils;
 import com.titan.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentIService departmentIService;
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * 分頁查詢科室信息
