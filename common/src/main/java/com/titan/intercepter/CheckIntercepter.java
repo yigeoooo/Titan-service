@@ -10,7 +10,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author yigeoooo
@@ -23,15 +22,19 @@ public class CheckIntercepter implements HandlerInterceptor {
     //重寫preHandler方法定義攔截器
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+        if ("OPTIONS".equals(request.getMethod())){
+            return true;
+        }
         String token = request.getHeader("Authorization");
-        log.info("攔截器攔截，token信息為{}", token);
         if (!StringUtils.isBlank(token)) {
             try {
                 Claims claims = JwtUtils.validateToken(token);
                 String id = claims.getSubject();
                 request.setAttribute("id", id);
+                log.info("攔截器攔截, 登錄ID信息為{}", id);
                 return true;
             } catch (ExpiredJwtException e) {
+                log.error("攔截器攔截, token信息錯誤");
                 e.printStackTrace();
                 return false;
             }

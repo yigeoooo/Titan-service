@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -59,12 +60,12 @@ public class NurseInfoEntity implements Serializable {
     * 插入時間
     */
 
-    private Date insertTime;
+    private LocalDate insertTime;
     /**
     * 更新時間
     */
 
-    private Date updateTime;
+    private LocalDate updateTime;
     /**
     * 邏輯刪除標識符
     */

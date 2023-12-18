@@ -1,8 +1,9 @@
 package com.titan.service.doctor;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.titan.pojo.entity.DoctorInfoEntity;
-import com.titan.utils.Result;
+import com.titan.pojo.vo.DoctorInfoVo;
 
 /**
  * 醫生信息接口
@@ -12,5 +13,10 @@ import com.titan.utils.Result;
 public interface DoctorInfoIService extends IService<DoctorInfoEntity> {
 
     void add(DoctorInfoEntity doctorInfoEntity);
+
+    Page<DoctorInfoEntity> page(DoctorInfoVo doctorInfoVo);
+
+    String sexRatio();
+
 
 }

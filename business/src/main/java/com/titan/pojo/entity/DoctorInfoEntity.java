@@ -2,6 +2,7 @@ package com.titan.pojo.entity;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -62,12 +63,12 @@ public class DoctorInfoEntity implements Serializable {
     * 插入時間
     */
 
-    private Date insertTime;
+    private LocalDate insertTime;
     /**
     * 更新時間
     */
 
-    private Date updateTime;
+    private LocalDate updateTime;
     /**
     * 邏輯刪除標識符
     */

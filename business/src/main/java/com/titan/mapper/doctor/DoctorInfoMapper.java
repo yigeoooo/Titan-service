@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.titan.pojo.entity.DoctorInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+
 /**
  * 醫生信息持久層
  * @author yigeoooo
@@ -11,4 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DoctorInfoMapper extends BaseMapper<DoctorInfoEntity> {
+
+
+
 }
