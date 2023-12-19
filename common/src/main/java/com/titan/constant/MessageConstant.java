@@ -25,10 +25,10 @@ public class MessageConstant {
     /**
      * option常量
      */
-    public final static String OPTION = "OPTION";
+    public final static String OPTIONS = "OPTIONS";
 
     /**
-     * option常量
+     * Authorization常量
      */
     public final static String AUTHORIZATION = "Authorization";
 

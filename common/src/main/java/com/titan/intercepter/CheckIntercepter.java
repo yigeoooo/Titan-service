@@ -1,6 +1,5 @@
 package com.titan.intercepter;
 
-import com.titan.constant.CommonConstant;
 import com.titan.constant.MessageConstant;
 import com.titan.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -31,7 +30,7 @@ public class CheckIntercepter implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-        if (MessageConstant.OPTION.equals(request.getMethod())){
+        if (MessageConstant.OPTIONS.equals(request.getMethod())){
             return true;
         }
         String token = request.getHeader(MessageConstant.AUTHORIZATION);

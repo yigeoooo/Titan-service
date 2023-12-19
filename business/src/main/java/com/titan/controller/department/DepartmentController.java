@@ -1,14 +1,12 @@
 package com.titan.controller.department;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.titan.exception.BusinessException;
 import com.titan.pojo.entity.DepartmentEntity;
 import com.titan.pojo.vo.DepartmentVo;
 import com.titan.service.department.DepartmentIService;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**

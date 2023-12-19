@@ -31,80 +31,19 @@ import java.util.Locale;
  * @author yigeoooo
  */
 @RestControllerAdvice(basePackages = {"com.titan.controller"})
-public class BusinessExceptionHandler implements ResponseBodyAdvice<Object> {
+public class BusinessExceptionHandler {
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(BusinessExceptionHandler.class);
 
-	@Autowired
-	private MessageSource messageSource;
 
 	/**
 	 * 攔截自定義的異常
 	 */
 	@ExceptionHandler(BusinessException.class)
 	public Result handleAppException(BusinessException e) {
-
-		return Result.build(ResultCode.ERROR.getCode(), ResultCode.NOT_FOUND.getName(), getLocaleMessage(e.getCode(), e.getParams()),null,null);
+		return Result.build(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getName(),ResultCode.SUCCESS.getMessage(), (Object)null,"",null);
 	}
 
-	@ExceptionHandler(NoHandlerFoundException.class)
-	public Result handlerNoFoundException(Exception e) {
-		// 404
-		return Result.build(ResultCode.NOT_FOUND.getCode(), ResultCode.NOT_FOUND.getName(),getLocaleMessage(ResultCode.NOT_FOUND.getName(), null),null,null);
-	}
 
-	@ExceptionHandler(DuplicateKeyException.class)
-	public Result handleDuplicateKeyException(DuplicateKeyException e){
-		return Result.build(ResultCode.UNAUTHORIZED.getCode(), ResultCode.UNAUTHORIZED.getName(), getLocaleMessage(ResultCode.UNAUTHORIZED.getName(), null),null,null);
-	}
 
-	/**
-	 * 處理其他拋出的異常
-	 */
-	@ExceptionHandler(Exception.class)
-	public Result handleException(Exception e) {
-		LOGGER.warn(e.getMessage(), e);
-		return Result.build(ResultCode.ERROR.getCode(), ResultCode.ERROR.getName(), getLocaleMessage(ResultCode.ERROR.getName(), null),null,null);
-	}
-	/**
-	 * 獲取國際化異常資訊
-	 */
-	private String getLocaleMessage(String code, Object[] params) {
-		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-		HttpServletRequest request = attributes.getRequest();
-		String languageTypeCode =request.getHeader("languageTypeCode");
-		Locale locale = new Locale(LanguageCode.getPropertiesNameByCode(languageTypeCode));
-		String pattern = messageSource.getMessage(code, null, locale);
-		if (StringUtils.isNotEmpty(pattern)) {
-			return MessageFormat.format(pattern, params);
-		} else {
-			return "";
-		}
-	}
 
-	@Override
-	public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-		return true;
-	}
-
-	@Override
-	public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
-                                  Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response)  {
-		Result<Object> Result = null;
-		if (body instanceof Result) {
-			Result = (Result)body;
-			Result.setResultCode(((Result) body).getResultCode());
-			if (StringUtils.isNotEmpty(((Result) body).getMessageCode())) {
-				Result.setResultMessage(getLocaleMessage(((Result) body).getMessageCode(), null));
-			} else {
-				Result.setResultMessage(getLocaleMessage(ResultCode.SUCCESS.getName(), null));
-			}
-			return Result;
-		} else {
-			Result = new Result<Object>();
-			Result.setResultCode(ResultCode.SUCCESS.getCode());
-			Result.setResultMessage(getLocaleMessage(ResultCode.SUCCESS.getName(), null));
-			Result.setBody(body);
-		}
-		return Result;
-	}
 }

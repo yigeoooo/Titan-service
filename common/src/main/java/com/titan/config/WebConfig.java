@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
                 // 是否允许证书（cookies）
                 .allowCredentials(true)
                 // 预检请求的缓存时间（秒）
-                .maxAge(8000);
+                .maxAge(80000);
     }
     /**
      * 攔截器註冊，定義攔截路徑
