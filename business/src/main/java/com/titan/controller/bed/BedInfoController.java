@@ -5,6 +5,7 @@ import com.titan.pojo.vo.BedInfoVo;
 import com.titan.service.bed.BedInfoIService;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;

@@ -1,75 +1,38 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.titan.exception;
 
-
-import com.titan.utils.MessageUtils;
+import lombok.Getter;
 
 /**
- * 自定义异常
+ * 自定義異常
  *
- * @author Mark sunlightcs@gmail.com
+ * @author Mark initPlatform
  */
+@Getter
 public class BusinessException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-    private int code;
-	private String msg;
+	private String code;
+	private Object[] params;
 
-	public BusinessException(int code) {
+	/**
+	 * 支援自定義錯誤碼和提示信息的異常
+	 *
+	 * @param code 錯誤碼
+	 */
+	public BusinessException(String code, Object... params) {
+		super(code);
 		this.code = code;
-		this.msg = MessageUtils.getMessage(code);
+		this.params = params;
 	}
 
-	public BusinessException(int code, String... params) {
-		this.code = code;
-		this.msg = MessageUtils.getMessage(code, params);
-	}
 
-	public BusinessException(int code, Throwable e) {
-		super(e);
-		this.code = code;
-		this.msg = MessageUtils.getMessage(code);
-	}
-
-	public BusinessException(int code, Throwable e, String... params) {
-		super(e);
-		this.code = code;
-		this.msg = MessageUtils.getMessage(code, params);
-	}
-
-	public BusinessException(String msg) {
-		super(msg);
-		this.code = ErrorCode.INTERNAL_SERVER_ERROR;
-		this.msg = msg;
-	}
-
-	public BusinessException(String msg, Throwable e) {
-		super(msg, e);
-		this.code = ErrorCode.INTERNAL_SERVER_ERROR;
-		this.msg = msg;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
+	/**
+	 * 支援自定義錯誤碼和提示信息的異常
+	 *
+	 * @param code 錯誤碼
+	 */
+	public BusinessException(String code) {
+		super(code);
 		this.code = code;
 	}
-
 }
