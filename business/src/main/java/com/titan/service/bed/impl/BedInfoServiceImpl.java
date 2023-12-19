@@ -4,6 +4,8 @@ import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.titan.constant.CommonConstant;
+import com.titan.constant.MessageConstant;
 import com.titan.mapper.bed.BedInfoMapper;
 import com.titan.mapper.nurse.NurseInfoMapper;
 import com.titan.mapper.ward.WardInfoMapper;
@@ -41,7 +43,7 @@ public class BedInfoServiceImpl extends ServiceImpl<BedInfoMapper, BedInfoEntity
     public Map<String, List<String>> nurseAndAddress(String department) {
         //查询科室所属下的护士信息列表
         QueryWrapper<NurseInfoEntity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("department", department);
+        queryWrapper.eq(CommonConstant.Nurse.DEPARTMENT, department);
         List<NurseInfoEntity> nurses = nurseInfoMapper.selectList(queryWrapper);
         //封装护士信息名字
         List<String> nurseList = new ArrayList<>();
@@ -51,7 +53,7 @@ public class BedInfoServiceImpl extends ServiceImpl<BedInfoMapper, BedInfoEntity
 
         //查询科室所属下的病房信息
         QueryWrapper<WardInfoEntity> query = new QueryWrapper();
-        query.eq("department", department);
+        query.eq(CommonConstant.Ward.DEPARTMENT, department);
         List<WardInfoEntity> wards = wardInfoMapper.selectList(query);
         //封装地址信息
         List<String> addressList = new ArrayList<>();
@@ -59,9 +61,9 @@ public class BedInfoServiceImpl extends ServiceImpl<BedInfoMapper, BedInfoEntity
             addressList.add(item.getAddress());
         });
         //封装病房地址与护士姓名集合
-        Map<String, List<String>> map = new HashMap<>();
-        map.put("nurse", nurseList);
-        map.put("address", addressList);
+        Map<String, List<String>> map = new HashMap<>(100);
+        map.put(MessageConstant.NURSE, nurseList);
+        map.put(MessageConstant.ADDRESS, addressList);
         return map;
     }
 
@@ -70,7 +72,7 @@ public class BedInfoServiceImpl extends ServiceImpl<BedInfoMapper, BedInfoEntity
         //根据护士名查询护士联系方式
         String managerNurse = bedInfoDo.getManagerNurse();
         QueryWrapper<NurseInfoEntity> query = new QueryWrapper<>();
-        query.eq("nurse_name", managerNurse);
+        query.eq(CommonConstant.Nurse.NURSE_NAME, managerNurse);
         NurseInfoEntity nurse = nurseInfoMapper.selectOne(query);
         //封装新增信息
         bedInfoDo.setPhoneNumber(nurse.getPhoneNumber());
@@ -85,10 +87,10 @@ public class BedInfoServiceImpl extends ServiceImpl<BedInfoMapper, BedInfoEntity
         //构建查询条件
         QueryWrapper<BedInfoEntity> query = new QueryWrapper<>();
         if (!StringUtils.isBlank(bedInfoVo.getDepartment())) {
-            query.eq("department", bedInfoVo.getDepartment());
+            query.eq(CommonConstant.Bed.DEPARTMENT, bedInfoVo.getDepartment());
         }
         if (!StringUtils.isBlank(bedInfoVo.getManagerNurse())) {
-            query.eq("manager_nurse", bedInfoVo.getManagerNurse());
+            query.eq(CommonConstant.Bed.MANAGER_NURSE, bedInfoVo.getManagerNurse());
         }
         Page<BedInfoEntity> bedInfoDoPage = bedInfoMapper.selectPage(page, query);
         return bedInfoDoPage;

@@ -7,11 +7,29 @@ import java.util.Map;
  * @author wangq
  */
 public enum LanguageCode {
+    /**
+     * NONE
+     */
     NONE("","",""),
+    /**
+     *ENGLISH
+     */
     ENGLISH("EN", "en", ""),
+    /**
+     *JAPANESE
+     */
     JAPANESE("JP", "ja", "JP"),
+    /**
+     *S_CHINESE
+     */
     S_CHINESE("CN", "zh", "CN"),
+    /**
+     *T_CHINESE
+     */
     T_CHINESE("TC", "zh", "TW"),
+    /**
+     *THAI
+     */
     THAI("TH", "th", "TH");
 
     private String languageTypeCode;

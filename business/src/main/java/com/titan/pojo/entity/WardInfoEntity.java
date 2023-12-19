@@ -15,7 +15,8 @@ import java.util.Date;
 
 /**
 *
-* @TableName ward_info
+* @author yigeoooo
+ * @TableName ward_info
 */
 @Data
 @TableName("ward_info")

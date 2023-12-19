@@ -3,6 +3,7 @@ package com.titan.service.doctor.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.titan.constant.CommonConstant;
 import com.titan.mapper.doctor.DoctorInfoMapper;
 import com.titan.pojo.entity.DoctorInfoEntity;
 import com.titan.pojo.vo.DoctorInfoVo;
@@ -46,11 +47,11 @@ public class DoctorInfoServiceImpl extends ServiceImpl<DoctorInfoMapper, DoctorI
         QueryWrapper queryWrapper = new QueryWrapper();
         //判斷姓名
         if (!StringUtils.isBlank(doctorInfoDo.getDoctorName())){
-            queryWrapper.eq("doctor_name", doctorInfoDo.getDoctorName());
+            queryWrapper.eq(CommonConstant.Doctor.DOCTOR_NAME, doctorInfoDo.getDoctorName());
         }
         //科室判斷
         if (!StringUtils.isBlank(doctorInfoDo.getDepartment())){
-            queryWrapper.eq("department", doctorInfoDo.getDepartment());
+            queryWrapper.eq(CommonConstant.Doctor.DEPARTMENT, doctorInfoDo.getDepartment());
         }
         return doctorInfoMapper.selectPage(page, queryWrapper);
     }
@@ -59,10 +60,10 @@ public class DoctorInfoServiceImpl extends ServiceImpl<DoctorInfoMapper, DoctorI
     public String sexRatio() {
         //構建條件
         QueryWrapper<DoctorInfoEntity> query = new QueryWrapper<>();
-        query.eq("doctor_gender", "男");
+        query.eq(CommonConstant.Doctor.DOCTOR_GENDER, "男");
 
         QueryWrapper<DoctorInfoEntity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("doctor_gender", "女");
+        queryWrapper.eq(CommonConstant.Doctor.DOCTOR_GENDER, "女");
 
         Long manCount = doctorInfoMapper.selectCount(query);
         Long womanCount = doctorInfoMapper.selectCount(queryWrapper);
@@ -75,7 +76,7 @@ public class DoctorInfoServiceImpl extends ServiceImpl<DoctorInfoMapper, DoctorI
     public List<String> doctors(String department) {
         //构建条件
         QueryWrapper<DoctorInfoEntity> query = new QueryWrapper<>();
-        query.eq("department", department);
+        query.eq(CommonConstant.Doctor.DEPARTMENT, department);
         List<DoctorInfoEntity> doctors = doctorInfoMapper.selectList(query);
         //封装医生名字集合
         List<String> list = new ArrayList<>();

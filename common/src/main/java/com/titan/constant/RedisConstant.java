@@ -1,4 +1,4 @@
-package com.titan.xss;
+package com.titan.constant;
 
 /**
  * redis常量
@@ -15,8 +15,6 @@ public class RedisConstant {
 
     /**  不設置過期時長 */
     public final static long NOT_EXPIRE = -1;
-
-
 
     /**  管理員key */
     public final static String ROOT_ID = "root_id";

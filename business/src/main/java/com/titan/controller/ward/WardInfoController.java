@@ -16,57 +16,57 @@ import org.springframework.web.bind.annotation.*;
 public class WardInfoController {
 
     @Autowired
-    private WardInfoIService wardInfoIService;
+    private WardInfoIService wardInfoIservice;
 
     /**
      * 插入病房信息
      * @param wardInfoDo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/insert")
     public Result insert(@RequestBody WardInfoEntity wardInfoDo){
-        wardInfoIService.insert(wardInfoDo);
+        wardInfoIservice.insert(wardInfoDo);
         return Result.build(true);
     }
 
     /**
      * 分页条件拆线呢病房信息
      * @param wardInfoVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/page")
     public Result page(@RequestBody WardInfoVo wardInfoVo) {
-        return Result.build(wardInfoIService.page(wardInfoVo));
+        return Result.build(wardInfoIservice.page(wardInfoVo));
     }
 
 
     /**
      * 查询病房总数
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/count")
     public Result count() {
-        return Result.build(wardInfoIService.count());
+        return Result.build(wardInfoIservice.count());
     }
 
     /**
      * 逻辑删除病房信息
      * @param id
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/delete")
     public Result delete(String id) {
-        return Result.build(wardInfoIService.removeById(id));
+        return Result.build(wardInfoIservice.removeById(id));
     }
 
     /**
      * 更新病房信息
      * @param wardInfoDo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/update")
     public Result update(@RequestBody WardInfoEntity wardInfoDo) {
-        wardInfoIService.update(wardInfoDo);
+        wardInfoIservice.update(wardInfoDo);
         return Result.build(true);
     }
 }

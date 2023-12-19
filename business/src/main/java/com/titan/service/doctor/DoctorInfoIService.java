@@ -14,11 +14,29 @@ import java.util.List;
  */
 public interface DoctorInfoIService extends IService<DoctorInfoEntity> {
 
+    /**
+     * 增加醫生信息
+     * @param doctorInfoEntity
+     */
     void add(DoctorInfoEntity doctorInfoEntity);
 
+    /**
+     * 分頁條件查詢醫生信息
+     * @param doctorInfoVo
+     * @return Page
+     */
     Page<DoctorInfoEntity> page(DoctorInfoVo doctorInfoVo);
 
+    /**
+     * 獲取男女比例
+     * @return String
+     */
     String sexRatio();
 
+    /**
+     * 查询所属部门医生信息
+     * @param department
+     * @return List
+     */
     List<String> doctors(String department);
 }

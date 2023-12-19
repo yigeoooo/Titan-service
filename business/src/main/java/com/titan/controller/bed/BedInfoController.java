@@ -5,7 +5,6 @@ import com.titan.pojo.vo.BedInfoVo;
 import com.titan.service.bed.BedInfoIService;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,7 @@ public class BedInfoController {
     /**
      * 获取护士姓名集合与病房地址集合
      * @param department
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/map")
     public Result nurseAndAddress(String department) {
@@ -35,7 +34,7 @@ public class BedInfoController {
     /**
      * 插入病房信息
      * @param bedInfoDo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/insert")
     public Result insert(@RequestBody BedInfoEntity bedInfoDo) {
@@ -46,7 +45,7 @@ public class BedInfoController {
     /**
      * 分页条件查询病床信息
      * @param bedInfoVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/page")
     public Result page(@RequestBody BedInfoVo bedInfoVo) {
@@ -55,7 +54,7 @@ public class BedInfoController {
 
     /**
      * 查询病床总数
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/count")
     public Result count() {
@@ -65,7 +64,7 @@ public class BedInfoController {
     /**
      * 逻辑删除病房信息
      * @param id
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/deleted")
     public Result delete(String id) {

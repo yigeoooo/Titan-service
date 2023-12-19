@@ -84,7 +84,7 @@ public class DoctorInfoController {
     /**
      * 獲取醫生詳細信息
      * @param doctorInfoVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/info")
     public Result info(@RequestBody DoctorInfoVo doctorInfoVo){
@@ -93,7 +93,7 @@ public class DoctorInfoController {
 
     /**
      * 獲取男女比例
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/sexRatio")
     public Result sexRatio(){
@@ -103,7 +103,7 @@ public class DoctorInfoController {
     /**
      * 查询所属部门医生信息
      * @param department
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/list")
     public Result getDoctors(String department) {

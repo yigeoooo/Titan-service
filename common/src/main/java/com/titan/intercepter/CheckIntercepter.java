@@ -1,5 +1,7 @@
 package com.titan.intercepter;
 
+import com.titan.constant.CommonConstant;
+import com.titan.constant.MessageConstant;
 import com.titan.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -19,22 +21,27 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 @Slf4j
 public class CheckIntercepter implements HandlerInterceptor {
-    //重寫preHandler方法定義攔截器
+    /**
+     * 重写preHandle
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-        if ("OPTIONS".equals(request.getMethod())){
+        if (MessageConstant.OPTION.equals(request.getMethod())){
             return true;
         }
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(MessageConstant.AUTHORIZATION);
         if (!StringUtils.isBlank(token)) {
             try {
                 Claims claims = JwtUtils.validateToken(token);
                 String id = claims.getSubject();
-                request.setAttribute("id", id);
-                log.info("攔截器攔截, 登錄ID信息為{}", id);
+                request.setAttribute(MessageConstant.ID, id);
                 return true;
             } catch (ExpiredJwtException e) {
-                log.error("攔截器攔截, token信息錯誤");
                 e.printStackTrace();
                 return false;
             }

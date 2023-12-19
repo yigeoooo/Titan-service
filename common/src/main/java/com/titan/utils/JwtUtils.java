@@ -16,8 +16,14 @@ import java.util.Date;
  * @since date 2023/12/2
  */
 public class JwtUtils {
-    private static final long EXPIRATION_TIME = 86400000; // 例如：1天過期
-    private static final String SECRET = "yigeoooo"; // 密钥
+    /**
+     * 例如：1天過期
+     */
+    private static final long EXPIRATION_TIME = 86400000;
+    /**
+     * 密钥
+     */
+    private static final String SECRET = "yigeoooo";
 
     public static String generateToken(String username) {
         Date now = new Date();

@@ -20,16 +20,28 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private CheckIntercepter checkIntercepter;
 
-    //同源策略解决跨域
+    /**
+     * 同源策略解决跨域
+     * @param registry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // 允许跨域的路径
-                .allowedOriginPatterns("*") // 允许跨域请求的域名
-                .allowedMethods("*") // 允许的请求方法
-                .allowCredentials(true) // 是否允许证书（cookies）
-                .maxAge(8000); // 预检请求的缓存时间（秒）
+        registry
+                // 允许跨域的路径
+                .addMapping("/**")
+                // 允许跨域请求的域名
+                .allowedOriginPatterns("*")
+                // 允许的请求方法
+                .allowedMethods("*")
+                // 是否允许证书（cookies）
+                .allowCredentials(true)
+                // 预检请求的缓存时间（秒）
+                .maxAge(8000);
     }
-    //攔截器註冊，定義攔截路徑
+    /**
+     * 攔截器註冊，定義攔截路徑
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(checkIntercepter)

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 
 /**
-*
+* @author yigeoooo
 * @TableName department
 */
 @Data
@@ -26,32 +26,26 @@ public class DepartmentEntity implements Serializable {
     /**
     * 科室名
     */
-
     private String departmentName;
     /**
     * 科室編碼
     */
-
     private String departmentCode;
     /**
     * 主管醫生
     */
-
     private String manager;
     /**
     * 排序標識符
     */
-
     private Long sort;
     /**
     * 插入時間
     */
-
     private LocalDate insertTime;
     /**
     * 更新時間
     */
-
     private LocalDate updateTime;
     /**
     * 邏輯刪除標識符

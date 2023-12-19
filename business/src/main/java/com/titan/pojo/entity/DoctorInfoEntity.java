@@ -13,7 +13,8 @@ import lombok.Data;
 
 /**
 *
-* @TableName doctor_info
+* @author yigeoooo
+ * @TableName doctor_info
 */
 @Data
 @TableName("doctor_info")

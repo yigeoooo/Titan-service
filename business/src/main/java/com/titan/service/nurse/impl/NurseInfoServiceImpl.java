@@ -3,6 +3,7 @@ package com.titan.service.nurse.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.titan.constant.CommonConstant;
 import com.titan.mapper.nurse.NurseInfoMapper;
 import com.titan.pojo.entity.NurseInfoEntity;
 import com.titan.pojo.vo.NurseInfoVo;
@@ -33,10 +34,10 @@ public class NurseInfoServiceImpl extends ServiceImpl<NurseInfoMapper, NurseInfo
         String department = nurseInfoVo.getDepartment();
         QueryWrapper<NurseInfoEntity> query = new QueryWrapper<>();
         if (!StringUtils.isBlank(nurseName)) {
-            query.eq("nurse_name", nurseName);
+            query.eq(CommonConstant.Nurse.NURSE_NAME, nurseName);
         }
         if (!StringUtils.isBlank(department)) {
-            query.eq("department", department);
+            query.eq(CommonConstant.Nurse.DEPARTMENT, department);
         }
         Page<NurseInfoEntity> nursePage = nurseInfoMapper.selectPage(page, query);
         return nursePage;

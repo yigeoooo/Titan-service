@@ -30,7 +30,6 @@ public class LogAspect {
     /**
      * ..表示包及子包 該方法代表controller層的所有方法
      */
-//    "execution(public * com.titan.controller.*.*(..))"
     @Pointcut("execution(public * com.titan.controller.*.*.*(..))")
     public void controllerMethod() {
     }
@@ -50,7 +49,6 @@ public class LogAspect {
 
             StringBuilder requestLog = new StringBuilder();
             Signature signature = joinPoint.getSignature();
-            //requestLog.append(((MethodSignature) signature).getMethod().getAnnotation(ApiOperation.class).value()).append("\t");
             requestLog.append("請求信息：").append("URL = {").append(request.getRequestURI()).append("},\t");
             requestLog.append("請求方式 = {").append(request.getMethod()).append("},\t");
             requestLog.append("請求IP = {").append(IPUtils.getIpAddr(request)).append("},\t");

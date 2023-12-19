@@ -1,16 +1,17 @@
 package com.titan.controller.root;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.titan.constant.CommonConstant;
+import com.titan.constant.MessageConstant;
 import com.titan.pojo.entity.RootInfoEntity;
 import com.titan.pojo.vo.BaseVo;
 import com.titan.service.root.RootInfoIService;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 /**
  * 前端交互層
@@ -27,7 +28,7 @@ public class RootInfoController {
     /**
      * 修改root密碼
      * @param baseVo
-     * @return
+     * @return Result
      */
     @PostMapping("/password")
     public Result updatePassword(@RequestBody BaseVo baseVo) {
@@ -37,7 +38,7 @@ public class RootInfoController {
 
     /**
      * 獲取admin用戶詳細信息
-     *
+     * @param request
      * @return Result
      */
     @GetMapping("/info")
@@ -48,16 +49,17 @@ public class RootInfoController {
     /**
      * 修改或新增admin信息
      * @param rootInfoEntity
+     * @param request
      * @return Result
      */
     @PostMapping("/update")
     public Result updateInfo(@RequestBody RootInfoEntity rootInfoEntity, HttpServletRequest request) {
         QueryWrapper<RootInfoEntity> query = new QueryWrapper<>();
-        String id = request.getAttribute("id").toString();
-        LocalDateTime dateTime = LocalDateTime.now();
+        String id = request.getAttribute(MessageConstant.ID).toString();
+        LocalDate dateTime = LocalDate.now();
         rootInfoEntity.setUpdateTime(dateTime);
         rootInfoEntity.setRootId(id);
-        query.eq("root_id", id);
+        query.eq(CommonConstant.Root.ROOT_ID, id);
         boolean bo = rootInfoIService.saveOrUpdate(rootInfoEntity, query);
         if (bo) {
             return Result.build(true);

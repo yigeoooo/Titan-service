@@ -3,6 +3,7 @@ package com.titan.service.ward.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.titan.constant.CommonConstant;
 import com.titan.mapper.doctor.DoctorInfoMapper;
 import com.titan.mapper.ward.WardInfoMapper;
 import com.titan.pojo.entity.DoctorInfoEntity;
@@ -33,7 +34,7 @@ public class WardInfoServiceImpl extends ServiceImpl<WardInfoMapper, WardInfoEnt
         //根据医生姓名查询医生联系电话
         String doctor = wardInfoDo.getManager();
         QueryWrapper<DoctorInfoEntity> query = new QueryWrapper<>();
-        query.eq("doctor_name", doctor);
+        query.eq(CommonConstant.Doctor.DOCTOR_NAME, doctor);
         DoctorInfoEntity doctorInfoDo = doctorInfoMapper.selectOne(query);
         String phoneNumber = doctorInfoDo.getPhoneNumber();
         wardInfoDo.setBedCount(0);
@@ -49,10 +50,10 @@ public class WardInfoServiceImpl extends ServiceImpl<WardInfoMapper, WardInfoEnt
         //条件判断
         QueryWrapper<WardInfoEntity> query = new QueryWrapper<>();
         if (!StringUtils.isBlank(wardInfoVo.getDepartment())) {
-            query.eq("department", wardInfoVo.getDepartment());
+            query.eq(CommonConstant.Ward.DEPARTMENT, wardInfoVo.getDepartment());
         }
         if (!StringUtils.isBlank(wardInfoVo.getManager())) {
-            query.eq("manager", wardInfoVo.getManager());
+            query.eq(CommonConstant.Ward.MANAGER, wardInfoVo.getManager());
         }
         Page<WardInfoEntity> wardInfoDoPage = wardInfoMapper.selectPage(page, query);
         return wardInfoDoPage;
@@ -64,7 +65,7 @@ public class WardInfoServiceImpl extends ServiceImpl<WardInfoMapper, WardInfoEnt
         String doctor = wardInfoDo.getManager();
         //创建条件构造器
         QueryWrapper<DoctorInfoEntity> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("doctor_name", doctor);
+        queryWrapper.eq(CommonConstant.Doctor.DOCTOR_NAME, doctor);
         DoctorInfoEntity doctorInfoDo = doctorInfoMapper.selectOne(queryWrapper);
         //获取更新后的医生电话号码
         String phoneNumber = doctorInfoDo.getPhoneNumber();

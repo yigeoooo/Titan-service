@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  * 字串工具類, 繼承org.apache.commons.lang3.StringUtils類
+ * @author yigeoooo
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
@@ -41,7 +42,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     public static String listToString(List<String> list) {
 
         String str = "";
-
         if(list != null && list.size() > 0){
             for(String item : list){
                 if(isEmpty(str)){
@@ -190,11 +190,9 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
                 markLen = resultLen - original.length();
             }
         }
-//        System.out.println(markLen);
         for (int i=0;i<markLen;i++){
             rtn.append(mark);
         }
-//        System.out.println(rtn.toString());
         if (type == 0){
             rtn.append(original);
             return rtn.toString();

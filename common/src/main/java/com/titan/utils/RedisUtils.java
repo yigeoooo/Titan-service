@@ -1,7 +1,7 @@
 package com.titan.utils;
 
 import com.alibaba.nacos.shaded.com.google.gson.Gson;
-import com.titan.xss.RedisConstant;
+import com.titan.constant.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;

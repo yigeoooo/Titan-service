@@ -25,7 +25,7 @@ public class NurseInfoController {
     /**
      * 分页条件查询nurse
      * @param nurseInfoVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/page")
     public Result page(@RequestBody NurseInfoVo nurseInfoVo) {
@@ -35,7 +35,7 @@ public class NurseInfoController {
     /**
      * 新增护士信息
      * @param nurseInfoDo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/insert")
     public Result insert(@RequestBody NurseInfoEntity nurseInfoDo) {
@@ -46,7 +46,7 @@ public class NurseInfoController {
     /**
      * 修改护士信息
      * @param nurseInfoDo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/update")
     public Result update(@RequestBody NurseInfoEntity nurseInfoDo) {
@@ -58,7 +58,7 @@ public class NurseInfoController {
     /**
      * 逻辑删除护士信息
      * @param id
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("delete")
     public Result delete(String id) {
@@ -68,7 +68,7 @@ public class NurseInfoController {
 
     /**
      * 获得护士总数
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/count")
     public Result count() {
@@ -79,7 +79,7 @@ public class NurseInfoController {
     /**
      * 獲取醫生詳細信息
      * @param nurseInfoVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/info")
     public Result info(@RequestBody NurseInfoVo nurseInfoVo){

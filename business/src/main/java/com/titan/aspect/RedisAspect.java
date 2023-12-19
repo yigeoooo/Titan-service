@@ -19,7 +19,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    //是否開啟redis緩存 true開啟 false關閉
+    /**
+     * 是否開啟redis緩存 true開啟 false關閉
+     */
     @Value("${spring.redis.open: true}")
     private boolean open;
 
@@ -31,7 +33,6 @@ public class RedisAspect {
                 result = point.proceed();
             }catch (Exception e){
                 logger.error("redis error", e);
-//                throw new RRException("Redis服務異常");
                 throw new BusinessException(MessageCode.CommonMessage.ERROR);
             }
         }

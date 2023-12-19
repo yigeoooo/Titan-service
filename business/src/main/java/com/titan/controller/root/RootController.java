@@ -1,11 +1,11 @@
 package com.titan.controller.root;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.titan.constant.CommonConstant;
 import com.titan.pojo.entity.RootEntity;
 import com.titan.pojo.vo.BaseVo;
 import com.titan.service.root.RootIService;
 import com.titan.utils.JwtUtils;
-import com.titan.utils.RedisUtils;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +34,8 @@ public class RootController {
     public Result rootLogin(@RequestBody BaseVo baseVo) {
         RootEntity root = new RootEntity();
         QueryWrapper<RootEntity> query = new QueryWrapper<>();
-        query.eq("root_id", baseVo.getId())
-                .eq("password", baseVo.getPassword());
+        query.eq(CommonConstant.Root.ROOT_ID, baseVo.getId())
+                .eq(CommonConstant.Root.PASSWORD, baseVo.getPassword());
         long count = rootIService.count(query);
         if (count != 1) {
             return Result.build(false);

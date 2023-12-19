@@ -1,14 +1,36 @@
 package com.titan.xss;
 
+/**
+ * @author yigeoooo
+ */
 public interface Code {
     Integer COMM_BASE = 0;
 
+    /**
+     * getCode
+     * @return Integer
+     */
     Integer getCode();
 
+    /**
+     * getName
+     * @return String
+     */
     String getName();
 
+    /**
+     * getMessage
+     * @return String
+     */
     String getMessage();
 
+    /**
+     * 返回编码
+     * @param code
+     * @param name
+     * @param message
+     * @return Code
+     */
     static Code newInstance(final Integer code, final String name, final String message) {
         return new Code() {
             @Override

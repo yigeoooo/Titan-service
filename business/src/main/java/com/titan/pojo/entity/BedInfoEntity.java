@@ -12,7 +12,8 @@ import lombok.Data;
 
 /**
 *
-* @TableName bed_info
+*  @author yigeoooo
+ *  @TableName bed_info
 */
 @Data
 @TableName("bed_info")

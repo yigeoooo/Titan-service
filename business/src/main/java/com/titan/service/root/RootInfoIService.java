@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public interface RootInfoIService extends IService<RootInfoEntity> {
 
     /**
-     * 獲取admin用戶詳細信息
-     * @return Result
+     * 獲取root用戶詳細信息
+     * @param request
+     * @return RootInfoEntity
      */
     RootInfoEntity info(HttpServletRequest request);
 }

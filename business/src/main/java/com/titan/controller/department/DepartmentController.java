@@ -25,7 +25,7 @@ public class DepartmentController {
 
     /**
      * 分頁查詢科室信息
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/page")
     public Result getDepartmentList(@RequestBody DepartmentVo departmentVo){
@@ -35,7 +35,7 @@ public class DepartmentController {
 
     /**
      * 新增醫生界面下拉框部門選擇
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/names")
     public Result getDepartments(){
@@ -46,23 +46,18 @@ public class DepartmentController {
     /**
      * 新增科室信息
      * @param departmentVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/insert")
     public Result insertDepartment(@RequestBody DepartmentVo departmentVo){
-        try {
             departmentIService.insertDepartment(departmentVo);
             return Result.build(true);
-        } catch (BusinessException e) {
-            e.printStackTrace();
-            return Result.build(false);
-        }
     }
 
     /**
      * 修改部門信息
      * @param departmentVo
-     * @return ResultInfo
+     * @return Result
      */
     @PostMapping("/update")
     public Result updateDepartment(@RequestBody DepartmentVo departmentVo){
@@ -73,7 +68,7 @@ public class DepartmentController {
     /**
      * 邏輯刪除部門信息
      * @param id
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/delete")
     public Result deleteDepartment(String id){
@@ -82,7 +77,7 @@ public class DepartmentController {
 
     /**
      * 查詢科室總數
-     * @return ResultInfo
+     * @return Result
      */
     @GetMapping("/count")
     public Result getCount(){

@@ -3,6 +3,8 @@ package com.titan.service.department.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.titan.constant.CommonConstant;
+import com.titan.constant.ExceptionConstant;
 import com.titan.exception.BusinessException;
 import com.titan.mapper.department.DepartmentMapper;
 import com.titan.pojo.entity.DepartmentEntity;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,13 +40,13 @@ public class DepartmentImpl extends ServiceImpl<DepartmentMapper, DepartmentEnti
         String manager = departmentVo.getManager();
         //條件非空判斷
         if (!StringUtils.isBlank(code)){
-            query.eq("department_code", code);
+            query.eq(CommonConstant.Department.DEPARTMENT_CODE, code);
         }
         if (!StringUtils.isBlank(name)){
-            query.eq("department_name", name);
+            query.eq(CommonConstant.Department.DEPARTMENT_NAME, name);
         }
         if (!StringUtils.isBlank(manager)){
-            query.eq("manager", manager);
+            query.eq(CommonConstant.Department.MANAGER, manager);
         }
         return departmentMapper.selectPage(page, query);
     }
@@ -54,7 +55,7 @@ public class DepartmentImpl extends ServiceImpl<DepartmentMapper, DepartmentEnti
     public List<String> getDepartments() {
         //構築查詢信息
         QueryWrapper<DepartmentEntity> query = new QueryWrapper<>();
-        query.select("department_name");
+        query.select(CommonConstant.Department.DEPARTMENT_NAME);
         List<DepartmentEntity> departmentDos = departmentMapper.selectList(query);
         //封裝name信息
         List<String> list = new ArrayList<>();
@@ -69,10 +70,10 @@ public class DepartmentImpl extends ServiceImpl<DepartmentMapper, DepartmentEnti
     public void insertDepartment(DepartmentVo departmentVo) {
         //條件非空判斷
         if (StringUtils.isBlank(departmentVo.getDepartmentName())){
-            throw new BusinessException("科室名字不能為空");
+            throw new BusinessException(ExceptionConstant.DEPARTMENT_NAME_CANNOT_BE_EMPTY);
         }
         if (StringUtils.isBlank(departmentVo.getDepartmentCode())){
-            throw new BusinessException("科室編碼不能為空");
+            throw new BusinessException(ExceptionConstant.DEPARTMENT_CODE_CANNOT_BE_EMPTY);
         }
         //實體類封裝
         DepartmentEntity departmentDo = new DepartmentEntity();
