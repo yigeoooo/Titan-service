@@ -11,6 +11,11 @@ import lombok.Data;
  */
 @Data
 public class BaseVo {
+
+    /**
+     * 对应登录信息主键
+     */
+    private String key;
     /**
      * id
      */

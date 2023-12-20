@@ -21,6 +21,20 @@ public class CommonConstant {
 
     }
 
+    public static class Person {
+
+        /**
+         * 患者常量
+         */
+        public final static String PERSON_ID = "person_id";
+
+        /**
+         * 患者密码常量
+         */
+        public final static String PASSWORD = "password";
+
+    }
+
     public static class Department {
         /**
          * 科室编码常量
@@ -85,9 +99,19 @@ public class CommonConstant {
     public static class Doctor {
 
         /**
+         * 主键常量
+         */
+        public final static String ID = "id";
+
+        /**
          * 医生名常量
          */
         public final static String DOCTOR_NAME = "doctor_name";
+
+        /**
+         * 医生id常量
+         */
+        public final static String DOCTOR_ID = "doctor_id";
 
         /**
          * 部门常量
@@ -98,6 +122,11 @@ public class CommonConstant {
          * 医生性别常量
          */
         public final static String DOCTOR_GENDER = "doctor_gender";
+
+        /**
+         * 医生密码常量
+         */
+        public final static String PASSWORD = "password";
 
 
     }

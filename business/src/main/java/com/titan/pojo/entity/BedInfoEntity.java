@@ -24,45 +24,47 @@ public class BedInfoEntity implements Serializable {
     */
    @TableId
     private String id;
+
     /**
     * 病床id
     */
-
     private String bedCode;
+
     /**
     * 病床科室
     */
-
     private String department;
+
     /**
     * 主管護士
     */
-
     private String managerNurse;
+
     /**
     * 主管護士聯繫電話
     */
-
     private String phoneNumber;
+
     /**
     * 病床地址
     */
-
     private String address;
+
     /**
     * 排序標識符
     */
+    private Long sort;
 
     /**
     * 插入時間
     */
-
     private LocalDate insertTime;
+
     /**
     * 更新時間
     */
-
     private LocalDate updateTime;
+
     /**
     * 邏輯刪除標識符
     */

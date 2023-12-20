@@ -2,6 +2,8 @@ package com.titan.pojo.vo;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 /**
  * <p>
  *  病房接收实体类
@@ -21,4 +23,9 @@ public class BedInfoVo extends PageVo {
      * 负责护士
      */
     private String managerNurse;
+
+    /**
+     * 更新时间
+     */
+    private LocalDate updateTime;
 }

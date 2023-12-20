@@ -7,6 +7,12 @@ package com.titan.constant;
  */
 public class MessageConstant {
 
+
+    /**
+     * 数字0常量
+     */
+    public final static int ZERO = 0;
+
     /**
      * id常量
      */
