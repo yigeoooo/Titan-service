@@ -1,6 +1,8 @@
 package com.titan.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.titan.pojo.entity.RootEntity;
 import com.titan.pojo.entity.RootInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,4 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RootInfoMapper extends BaseMapper<RootInfoEntity> {
+
 }

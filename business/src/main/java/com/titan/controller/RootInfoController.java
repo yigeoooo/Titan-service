@@ -3,9 +3,11 @@ package com.titan.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.titan.constant.CommonConstant;
 import com.titan.constant.MessageConstant;
+import com.titan.constant.RedisConstant;
 import com.titan.pojo.entity.RootInfoEntity;
 import com.titan.pojo.vo.BaseVo;
 import com.titan.service.RootInfoIService;
+import com.titan.utils.RedisUtils;
 import com.titan.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,9 @@ public class RootInfoController {
     @Autowired
     private RootInfoIService rootInfoIService;
 
+    @Autowired
+    private RedisUtils redisUtils;
+
     /**
      * 修改root密碼
      * @param baseVo
@@ -32,8 +37,7 @@ public class RootInfoController {
      */
     @PostMapping("/password")
     public Result updatePassword(@RequestBody BaseVo baseVo) {
-        //TODO 密碼邏輯修改
-       return null;
+       return Result.build(rootInfoIService.updatePassword(baseVo));
     }
 
     /**
@@ -61,6 +65,10 @@ public class RootInfoController {
         rootInfoEntity.setRootId(id);
         query.eq(CommonConstant.Root.ROOT_ID, id);
         boolean bo = rootInfoIService.saveOrUpdate(rootInfoEntity, query);
+        //獲得管理員key,更新redis数据
+        Object obj = request.getAttribute(MessageConstant.ID);
+        String key = RedisConstant.ROOT_ID + ":" + (String)obj;
+        redisUtils.delete(key);
         if (bo) {
             return Result.build(true);
         }

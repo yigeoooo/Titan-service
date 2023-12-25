@@ -30,7 +30,7 @@ public class LogAspect {
     /**
      * ..表示包及子包 該方法代表controller層的所有方法
      */
-    @Pointcut("execution(public * com.titan.controller.*.*.*(..))")
+    @Pointcut("execution(public * com.titan.controller.*.*(..))")
     public void controllerMethod() {
     }
 

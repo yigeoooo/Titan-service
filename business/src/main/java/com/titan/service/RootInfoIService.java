@@ -2,6 +2,7 @@ package com.titan.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.titan.pojo.entity.RootInfoEntity;
+import com.titan.pojo.vo.BaseVo;
 import com.titan.utils.Result;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,4 +19,11 @@ public interface RootInfoIService extends IService<RootInfoEntity> {
      * @return RootInfoEntity
      */
     RootInfoEntity info(HttpServletRequest request);
+
+    /**
+     * 修改密码
+     * @param baseVo
+     * @return boolean
+     */
+    boolean updatePassword(BaseVo baseVo);
 }

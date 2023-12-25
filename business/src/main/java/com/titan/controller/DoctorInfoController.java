@@ -55,7 +55,6 @@ public class DoctorInfoController {
      */
     @PostMapping ("/page")
     public Result selectPage(@RequestBody DoctorInfoVo doctorInfoVo){
-        Page<DoctorInfoEntity> page = doctorInfoIService.page(doctorInfoVo);
         return Result.build(doctorInfoIService.page(doctorInfoVo));
     }
 
@@ -102,11 +101,11 @@ public class DoctorInfoController {
 
     /**
      * 查询所属部门医生信息
-     * @param department
+     * @param departmentName
      * @return Result
      */
     @GetMapping("/list")
-    public Result getDoctors(String department) {
-        return Result.build(doctorInfoIService.doctors(department));
+    public Result getDoctors(String departmentName) {
+        return Result.build(doctorInfoIService.doctors(departmentName));
     }
 }
