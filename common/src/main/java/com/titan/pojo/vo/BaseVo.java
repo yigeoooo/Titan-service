@@ -20,6 +20,12 @@ public class BaseVo {
      * id
      */
     private String id;
+
+    /**
+     * 旧用户名
+     */
+    private String oldId;
+
     /**
      * 密碼
      */
